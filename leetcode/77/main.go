@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 var ans [][]int
 
 func combine(n int, k int) [][]int {
@@ -25,5 +27,11 @@ func dfs(index, k, n int, path []int) {
 		path = append(path, i)
 		dfs(i+1, k-1, n, path)
 		path = path[:len(path)-1]
+	}
+}
+func main() {
+	res := combine(4, 2)
+	for i := 0; i < len(res); i++ {
+		fmt.Println(res[i])
 	}
 }

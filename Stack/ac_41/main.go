@@ -5,7 +5,6 @@ type MinStack struct {
 	minStack []int
 }
 
-/** initialize your data structure here. */
 func Constructor() MinStack {
 	return MinStack{
 		stack:    make([]int, 0),

@@ -27,8 +27,21 @@ func getPrefix(s1, s2 string) string {
 	return ""
 }
 
+func sumOfTheDigitsOfHarshadNumber(x int) int {
+	y := x
+	res := 0
+
+	for y > 0 {
+		res += y % 10
+		y /= 10
+	}
+	if x%res != 0 {
+		return -1
+	}
+	return res
+}
+
 func main() {
-	strs := []string{"flower", "flow", "flight"}
-	res := longestCommonPrefix(strs)
+	res := sumOfTheDigitsOfHarshadNumber(18)
 	fmt.Println(res)
 }

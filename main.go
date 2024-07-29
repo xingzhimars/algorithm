@@ -1,47 +1,30 @@
 package main
 
-import (
-	"fmt"
-)
-
-func longestCommonPrefix(strs []string) string {
-	prefix := strs[0]
-
-	for i := 1; i < len(strs); i++ {
-		s := strs[i]
-		prefix = getPrefix(prefix, s)
+func generateMatrix(n int) [][]int {
+	nums := make([][]int, n)
+	for i := 0; i < n; i++ {
+		nums[i] = make([]int, n)
 	}
+	dx := []int{0, 1, 0, -1}
+	dy := []int{1, 0, -1, 0}
+	d := 0
 
-	return prefix
-}
-
-func getPrefix(s1, s2 string) string {
 	i, j := 0, 0
-	for i < len(s1) && j < len(s2) {
-		if s1[i] != s2[j] {
-			return s1[:i]
+	for k := 1; k <= n*n; k++ {
+		nums[i][j] = k
+
+		ni, nj := i+dx[d], j+dy[d]
+		if ni < 0 || ni >= n || nj < 0 || nj >= n || nums[ni][nj] != 0 {
+			d = (d + 1) % 4
+			ni = i + dx[d]
+			nj = j + dy[d]
 		}
-		i++
-		j++
+		i = ni
+		j = nj
 	}
-	return ""
-}
-
-func sumOfTheDigitsOfHarshadNumber(x int) int {
-	y := x
-	res := 0
-
-	for y > 0 {
-		res += y % 10
-		y /= 10
-	}
-	if x%res != 0 {
-		return -1
-	}
-	return res
+	return nums
 }
 
 func main() {
-	res := sumOfTheDigitsOfHarshadNumber(18)
-	fmt.Println(res)
+	_ = generateMatrix(3)
 }

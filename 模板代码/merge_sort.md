@@ -1,3 +1,6 @@
+### 代码   
+
+```go
 package main
 
 func mergeSort(nums []int, l, r int) {
@@ -38,3 +41,4 @@ func merge(nums []int, l, mid, r int) {
 		nums[l+i] = tmp[i]
 	}
 }
+```

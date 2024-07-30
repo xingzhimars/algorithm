@@ -1,19 +1,11 @@
 package main
 
 import (
-	"fmt"
 	"math"
 	"sort"
 )
 
-func main() {
-	//nums := []int{1, 4, 25, 10, 25}
-	nums := []int{5, 6}
-	k := 6
-	res := minimalKSum(nums, k)
-	fmt.Println(res)
-}
-
+// 贪心 + 排序
 func minimalKSum(nums []int, k int) int64 {
 	nums = append(nums, 0, math.MaxInt32)
 	sort.Ints(nums)
@@ -24,17 +16,20 @@ func minimalKSum(nums []int, k int) int64 {
 			continue
 		}
 		if tmp >= k {
-			for j := 1; j <= k; j++ {
-				sum += nums[i-1] + j
-			}
+			// for j := 1; j <= k; j++ {
+			// 	sum += nums[i-1] + j
+			// }
+			sum += (nums[i-1] + 1 + nums[i-1] + k) * k / 2
 			return int64(sum)
 		}
+		// [1, 4]，等差数列
 		sum += (nums[i-1] + nums[i]) * tmp / 2
 		k -= tmp
 	}
 	return int64(sum)
 }
 
+// 错误代码，思路可以看看
 func minimalKSum_err(nums []int, k int) int64 {
 	arr := make([]int, len(nums)+1)
 	arr[0] = 0

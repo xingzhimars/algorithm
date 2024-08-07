@@ -8,10 +8,12 @@ import (
 
 func main() {
 	//nums := []int{1, 4, 25, 10, 25}
-	nums := []int{5, 6}
-	k := 6
-	res := minimalKSum(nums, k)
-	fmt.Println(res)
+	//nums := []int{5, 6}
+	//k := 6
+	//res := minimalKSum(nums, k)
+	//fmt.Println(res)
+	x := 2
+	fmt.Println(x ^ 1)
 }
 
 func minimalKSum(nums []int, k int) int64 {

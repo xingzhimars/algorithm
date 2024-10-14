@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"math"
 	"sort"
+	"strings"
 )
 
 func main() {
@@ -14,6 +15,29 @@ func main() {
 	//fmt.Println(res)
 	x := 2
 	fmt.Println(x ^ 1)
+}
+
+func convert(s string, numRows int) string {
+	res := make([][]byte, numRows)
+	for i := 0; i < numRows; i++ {
+		res[i] = make([]byte, 0)
+	}
+	n := len(s)
+	flag := -1
+	k := 0
+	for i := 0; i < n; i++ {
+		if k == 0 || k == numRows-1 {
+			flag = -flag
+		}
+		v := res[k]
+		v = append(v, s[i])
+		k += flag
+	}
+	var sb strings.Builder
+	for i := 0; i < numRows; i++ {
+		sb.Write(res[i])
+	}
+	return sb.String()
 }
 
 func minimalKSum(nums []int, k int) int64 {

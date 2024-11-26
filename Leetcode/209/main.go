@@ -29,6 +29,33 @@ func minSubArrayLen(target int, nums []int) int {
 	return minLen
 }
 
+// 这样写，会超时
+func minSubArrayLen2(target int, nums []int) int {
+	n := len(nums)
+
+	preSum := make([]int, n+1)
+	for i := 1; i <= n; i++ {
+		preSum[i] = preSum[i-1] + nums[i-1]
+	}
+
+	minLen := 0x3f3f3f3f
+
+	for i := 1; i <= n; i++ {
+		for j := i; j <= n; j++ {
+			sum := preSum[j] - preSum[i-1]
+			if sum >= target {
+				if j-i+1 < minLen {
+					minLen = j - i + 1
+				}
+			}
+		}
+	}
+	if minLen == 0x3f3f3f3f {
+		return 0
+	}
+	return minLen
+}
+
 func min(a, b int) int {
 	if a < b {
 		return a
